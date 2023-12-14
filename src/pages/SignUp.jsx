@@ -24,6 +24,7 @@ const SignUp = () => {
           },
         },
       });
+      if (error) throw error;
       alert("Check Your Email for Verification link");
     } catch (error) {
       alert(error);
@@ -38,7 +39,12 @@ const SignUp = () => {
           name="fullName"
           onChange={handleChange}
         />
-        <input placeholder="Email" name="email" onChange={handleChange} />
+        <input
+          placeholder="Email"
+          name="email"
+          type="email"
+          onChange={handleChange}
+        />
         <input
           placeholder="Password"
           name="password"
