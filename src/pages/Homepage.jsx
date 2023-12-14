@@ -1,7 +1,7 @@
-const Homepage = () => {
+const Homepage = ({ token }) => {
   return (
     <>
-      <h1>Home Page</h1>
+      <h1>Welcome Back {token.user.user_metadata.full_name}</h1>
     </>
   );
 };

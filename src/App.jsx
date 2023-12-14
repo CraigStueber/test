@@ -19,7 +19,11 @@ const App = () => {
       <Routes>
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/" element={<Login setToken={setToken} />} />
-        {token ? <Route path="/homepage" element={<Homepage />} /> : ""}
+        {token ? (
+          <Route path="/homepage" element={<Homepage token={token} />} />
+        ) : (
+          ""
+        )}
       </Routes>
     </div>
   );
