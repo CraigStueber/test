@@ -3,7 +3,7 @@ import { SignUp, Login, Homepage } from "./pages";
 import { Route, Routes } from "react-router-dom";
 const App = () => {
   const [token, setToken] = useState(false);
-
+  const [userInfo, setUserInfo] = useState();
   if (token) {
     sessionStorage.setItem("token", JSON.stringify(token));
   }
@@ -18,9 +18,15 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/" element={<Login setToken={setToken} />} />
+        <Route
+          path="/"
+          element={<Login setToken={setToken} setUserInfo={setUserInfo} />}
+        />
         {token ? (
-          <Route path="/homepage" element={<Homepage token={token} />} />
+          <Route
+            path="/homepage"
+            element={<Homepage token={token} userInfo={userInfo} />}
+          />
         ) : (
           ""
         )}

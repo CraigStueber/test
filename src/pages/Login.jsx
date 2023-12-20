@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../client";
-const Login = ({ setToken }) => {
+const Login = ({ setToken, setUserInfo }) => {
   let navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+
   console.log(loginData);
   function handleChange(event) {
     const value = event.target.value;
@@ -15,11 +16,13 @@ const Login = ({ setToken }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: loginData.email,
         password: loginData.password,
       });
+
       if (error) throw error;
       console.log(data);
       setToken(data);
