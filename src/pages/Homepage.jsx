@@ -10,21 +10,34 @@ const Homepage = ({ token }) => {
     };
     getUsers();
   }, []);
-  const fetchUsers = async () => {
+  async function fetchUsers() {
     let { data: UserProfile, error } = await supabase
       .from("UserProfile")
-      .select("*");
+      .select("*")
+      .eq("UserID", token.user.id);
 
-    console.log(data);
-    return UserProfile;
-    console.log(error);
-  };
-
-  return (
-    <>
-      <h1>Welcome Back {token.user.user_metadata.full_name}</h1>
-    </>
-  );
+    if (error) {
+      console.error("Error fetching:", error);
+      return;
+    } else {
+      console.log("Fetched Data: ", UserProfile);
+      return UserProfile;
+    }
+  }
+  const userProfile = userInfo.map((profile) => (
+    <div key={profile.id}>
+      <h1>
+        Welcome Back {profile.FirstName} {profile.LastName}
+      </h1>
+      <h2>Address</h2>
+      <p>{profile.Address}</p>
+      <p>
+        {profile.City}, {profile.State} {profile.PostalCode}
+      </p>
+    </div>
+  ));
+  console.log(userInfo);
+  return <>{userProfile}</>;
 };
 
 export default Homepage;
