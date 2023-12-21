@@ -13,7 +13,7 @@ const Homepage = ({ token }) => {
   const fetchUsers = async () => {
     let { data: UserProfile, error } = await supabase
       .from("UserProfile")
-      .select("FirstName");
+      .select("*");
 
     console.log(data);
     return UserProfile;
