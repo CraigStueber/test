@@ -3,12 +3,16 @@ import { supabase } from "../client";
 
 const Homepage = ({ token }) => {
   const [userInfo, setUserInfo] = useState([]);
+  const [session, setSession] = useState([]);
+
   useEffect(() => {
     const getUsers = async () => {
       const allUsers = await fetchUsers();
       setUserInfo(allUsers);
     };
     getUsers();
+    setSession(token);
+    console.log(token);
   }, []);
   async function fetchUsers() {
     let { data: UserProfile, error } = await supabase
@@ -20,7 +24,6 @@ const Homepage = ({ token }) => {
       console.error("Error fetching:", error);
       return;
     } else {
-      console.log("Fetched Data: ", UserProfile);
       return UserProfile;
     }
   }
@@ -36,8 +39,8 @@ const Homepage = ({ token }) => {
       </p>
     </div>
   ));
-  console.log(userInfo);
-  return <>{userProfile}</>;
+
+  return <>{ userProfile }</>;
 };
 
 export default Homepage;
