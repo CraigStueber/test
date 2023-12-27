@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { supabase } from "../client";
+import { supabase } from "../../client";
 const Login = ({ setToken, setUserInfo }) => {
   let navigate = useNavigate();
   const [loginData, setLoginData] = useState({

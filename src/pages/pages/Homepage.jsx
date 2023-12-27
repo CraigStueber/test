@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../client";
+import { supabase } from "../../client";
+import { Link } from "react-router-dom";
 
 const Homepage = ({ token }) => {
   const [userInfo, setUserInfo] = useState([]);
@@ -29,18 +30,23 @@ const Homepage = ({ token }) => {
   }
   const userProfile = userInfo.map((profile) => (
     <div key={profile.id}>
-      <h1>
-        Welcome Back {profile.FirstName} {profile.LastName}
-      </h1>
-      <h2>Address</h2>
-      <p>{profile.Address}</p>
-      <p>
-        {profile.City}, {profile.State} {profile.PostalCode}
-      </p>
+      <h1>Welcome Back {profile.UserName}</h1>
+      <h2>
+        {profile.FirstName} {profile.LastName}
+      </h2>
+      <p>City: {profile.City}</p>
+      <p> State: {profile.State}</p>
+      <h2>Description</h2>
+      <p>{profile.Description}</p>
     </div>
   ));
 
-  return <>{ userProfile }</>;
+  return (
+    <>
+      {userProfile}
+      <Link to="/happenings">Happenings</Link>
+    </>
+  );
 };
 
 export default Homepage;

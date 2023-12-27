@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { supabase } from "../client";
+import { supabase } from "../../client";
 import { Link } from "react-router-dom";
 const SignUp = () => {
   const [formData, setFormData] = useState({
