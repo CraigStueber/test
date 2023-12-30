@@ -4,7 +4,7 @@ const Happenings = ({ userID }) => {
   return (
     <>
       <h1>Happenings</h1>
-      <h2>Something</h2>
+      <h2>{user}</h2>
     </>
   );
 };

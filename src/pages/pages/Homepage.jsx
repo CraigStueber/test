@@ -28,6 +28,8 @@ const Homepage = ({ token }) => {
       return UserProfile;
     }
   }
+  console.log(userInfo);
+
   const userProfile = userInfo.map((profile) => (
     <div key={profile.id}>
       <h1>Welcome Back {profile.UserName}</h1>
@@ -38,6 +40,9 @@ const Homepage = ({ token }) => {
       <p> State: {profile.State}</p>
       <h2>Description</h2>
       <p>{profile.Description}</p>
+      {profile.Activities.map((acts, index) => {
+        return <h2 key={index}>{acts}</h2>;
+      })}
     </div>
   ));
 
